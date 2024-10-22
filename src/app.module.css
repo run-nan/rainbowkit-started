@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  height: calc(100vh - 32px);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16;
+}
