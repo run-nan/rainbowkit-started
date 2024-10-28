@@ -5,7 +5,7 @@
   height: calc(100vh - 32px);
 }
 
-.footer {
+.header {
   display: flex;
   justify-content: flex-end;
 }

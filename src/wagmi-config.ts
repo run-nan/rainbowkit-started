@@ -1,10 +1,10 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { mainnet, sepolia } from "wagmi/chains";
+import { mainnet, sepolia, anvil } from "wagmi/chains";
 
 export const wagmiConfig = getDefaultConfig({
   appName: "Hello Web3",
   projectId: "YOUR_PROJECT_ID",
-  chains: [mainnet, sepolia],
+  chains: [anvil, mainnet, sepolia],
 });
 
 declare module "wagmi" {

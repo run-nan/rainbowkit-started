@@ -1,16 +1,15 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount } from "wagmi";
 import styles from "./app.module.css";
+import { PermitTokenBank } from "./permit-token-bank";
 
 export function App() {
-  const { address, isConnected } = useAccount();
   return (
     <div className={styles.wrapper}>
-      <div className={styles.footer}>
+      <div className={styles.header}>
         <ConnectButton />
       </div>
       <main className={styles.main}>
-        <h1>{isConnected ? `Hello ${address}` : `Please Connect`}</h1>
+        <PermitTokenBank />
       </main>
     </div>
   );
