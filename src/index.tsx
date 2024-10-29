@@ -5,11 +5,11 @@ import { WagmiProvider } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { App } from "./app.tsx";
 import "@rainbow-me/rainbowkit/styles.css";
-import { wagmiConfig } from "./wagmi-config";
+import { wagmiConfig } from "./config";
 import { ConfigProvider, App as AntdApp } from "antd";
 
-
 const queryClient = new QueryClient();
+
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
