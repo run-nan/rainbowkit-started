@@ -1,5 +1,5 @@
 export const PERMIT_TOKEN_BANK_CA =
-  "0x86D8fd812e3f294C1d52860CD08F5116DA9B4A8F" as const;
+  "0x7f7b9b7139dfc2c65891d03c2de4279071d0c61d" as const;
 export const PERMIT_TOKEN_BANK_ABI = [
   {
     type: "constructor",

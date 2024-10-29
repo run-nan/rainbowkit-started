@@ -10,7 +10,6 @@ import { ConfigProvider, App as AntdApp } from "antd";
 
 const queryClient = new QueryClient();
 
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ConfigProvider>

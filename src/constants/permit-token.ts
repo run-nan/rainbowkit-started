@@ -1,5 +1,4 @@
-export const PERMIT_TOKEN_CA =
-  "0xB87C719442bF7bF0cC8caD65DA57F0943FE724BE" as const;
+export const PERMIT_TOKEN_CA = "0xf80662734fdafabaa966949b04e1147f139ddae0" as const;
 export const PERMIT_TOKEN_ABI = [
   {
     type: "constructor",
