@@ -1,0 +1,1 @@
+export const PERMIT2_CA = "0x77eB49386ff9ef934FE6f051b80B3e86f1EF6322" as const;
