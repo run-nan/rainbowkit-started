@@ -5,7 +5,7 @@ import { useWatchUsdtTransfers } from "./use-watch-usdt-transfers";
 export const ChainLogs = () => {
   const currentBlock = useCurrentBlock();
 
-  useWatchUsdtTransfers();
+  const { hasLogs } = useWatchUsdtTransfers();
 
   return (
     <Flex vertical gap={10}>
@@ -21,10 +21,12 @@ export const ChainLogs = () => {
           loading={currentBlock.isLoading}
           value={currentBlock.blockHash}
         />
-        <Statistic
-          title="USDT转账记录"
-          value="右侧通知栏会更新最近的3条USDT转账"
-        />
+        <Typography.Text type="secondary">USDT转账记录</Typography.Text>
+        <div id="usdt-transfers" style={{ width: "100%", height: "300px" }}>
+          {hasLogs ? null : (
+            <Typography.Title level={5}>监听中</Typography.Title>
+          )}
+        </div>
       </Flex>
     </Flex>
   );
