@@ -6,7 +6,7 @@ export const MockDB = {
   set: (key: string, value: unknown) => {
     localStorage.setItem(
       `mock-db.${key}`,
-      JSON.stringify(value, (key, value) => {
+      JSON.stringify(value, (_key, value) => {
         if (typeof value === "bigint") {
           return `$bigInt$${value.toString()}`;
         }
@@ -17,7 +17,7 @@ export const MockDB = {
   get: (key: string) => {
     const value = localStorage.getItem(`mock-db.${key}`);
     return value
-      ? JSON.parse(value, (key, value) => {
+      ? JSON.parse(value, (_key, value) => {
           if (typeof value === "string" && value.startsWith("$bigInt$")) {
             return BigInt(value.slice("$bigInt$".length));
           }
