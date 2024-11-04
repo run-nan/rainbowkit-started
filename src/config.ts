@@ -8,7 +8,7 @@ export const wagmiConfig = getDefaultConfig({
   chains: [anvil, mainnet, sepolia],
   transports: {
     [mainnet.id]: http("https://rpc.flashbots.net"),
-    [sepolia.id]: http("https://rpc2.sepolia.org"),
+    [sepolia.id]: http("https://1rpc.io/sepolia"),
     [anvil.id]: http("http://127.0.0.1:8545"),
   },
 });

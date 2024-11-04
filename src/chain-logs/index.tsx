@@ -1,12 +1,11 @@
-import { Flex, Statistic, Typography } from "antd";
+import { Flex, Statistic, Typography, Button } from "antd";
 import { useCurrentBlock } from "./use-current-block";
-import { useWatchUsdtTransfers } from "./use-watch-usdt-transfers";
+import { UsdtTransfersBoard } from "./usdt-transfers-board";
+import { useState } from "react";
 
 export const ChainLogs = () => {
   const currentBlock = useCurrentBlock();
-
-  const { hasLogs } = useWatchUsdtTransfers();
-
+  const [showUsdtTransfers, setShowUsdtTransfers] = useState(false);
   return (
     <Flex vertical gap={10}>
       <Typography.Title level={3}>Chain Logs</Typography.Title>
@@ -22,11 +21,15 @@ export const ChainLogs = () => {
           value={currentBlock.blockHash}
         />
         <Typography.Text type="secondary">USDT转账记录</Typography.Text>
-        <div id="usdt-transfers" style={{ width: "100%", height: "300px" }}>
-          {hasLogs ? null : (
-            <Typography.Title level={5}>监听中</Typography.Title>
-          )}
-        </div>
+        <Flex gap={10}>
+          <Button
+            type="primary"
+            onClick={() => setShowUsdtTransfers(!showUsdtTransfers)}
+          >
+            {showUsdtTransfers ? "停止监听" : "开始监听"}
+          </Button>
+        </Flex>
+        {showUsdtTransfers && <UsdtTransfersBoard />}
       </Flex>
     </Flex>
   );

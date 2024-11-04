@@ -12,16 +12,16 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ConfigProvider>
-      <AntdApp>
-        <WagmiProvider config={wagmiConfig}>
+    <WagmiProvider config={wagmiConfig}>
+      <ConfigProvider>
+        <AntdApp>
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider>
               <App />
             </RainbowKitProvider>
           </QueryClientProvider>
-        </WagmiProvider>
-      </AntdApp>
-    </ConfigProvider>
+        </AntdApp>
+      </ConfigProvider>
+    </WagmiProvider>
   </StrictMode>
 );

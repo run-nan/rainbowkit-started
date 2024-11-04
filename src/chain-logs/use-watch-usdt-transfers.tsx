@@ -1,8 +1,32 @@
 import { useWatchContractEvent } from "wagmi";
 import { USDT_ABI, USDT_CA } from "../constants/usdt";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Danmaku from "rc-danmaku";
-import { Typography } from "antd";
+import { Tag } from "antd";
+
+// eslint-disable-next-line react-refresh/only-export-components
+const COLORS = [
+  "magenta",
+  "red",
+  "volcano",
+  "orange",
+  "gold",
+  "lime",
+  "green",
+  "cyan",
+  "blue",
+  "geekblue",
+  "purple",
+] as const;
+
+const wait = (ms: number) => {
+  return new Promise<void>((resolve) => {
+    const timer = setTimeout(() => {
+      resolve();
+      clearTimeout(timer);
+    }, ms);
+  });
+};
 
 export const useWatchUsdtTransfers = () => {
   const danmakuInsRef = useRef<Danmaku | null>(null);
@@ -11,27 +35,27 @@ export const useWatchUsdtTransfers = () => {
       minGapWidth: 60,
     });
     danmakuInsRef.current = danmakuIns;
+    return () => {
+      danmakuInsRef.current?.clearQueue();
+      danmakuInsRef.current?.destroy();
+    };
   }, []);
-  const [hasLogs, setHasLogs] = useState(false);
   useWatchContractEvent({
     address: USDT_CA,
     abi: USDT_ABI,
     eventName: "Transfer",
-    onLogs(logs) {
-      if (!hasLogs) {
-        setHasLogs(true);
-      }
-      logs.forEach((log) => {
+    async onLogs(logs) {
+      for (let i = 0; i < logs.length; i++) {
+        const log = logs[i];
         danmakuInsRef.current?.push(
-          <Typography.Text type="success">
+          <Tag color={COLORS[i % COLORS.length]}>
             {log.args.from} transfers {Number(log.args.value) / 10 ** 6} $USDT
-            to {log.args.to}
-          </Typography.Text>
+            to
+            {log.args.to}
+          </Tag>
         );
-      });
+        await wait(500);
+      }
     },
   });
-  return {
-    hasLogs,
-  };
 };
